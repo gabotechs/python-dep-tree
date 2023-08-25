@@ -53,6 +53,7 @@ def main():
         file.extractall(BIN_EXTRACTED)
         shutil.move(path.join(BIN_EXTRACTED, 'dep-tree'), BIN)
         shutil.rmtree(BIN_EXTRACTED)
+        file.close()
         os.remove(BIN_TAR)
 
     exit(subprocess.call(
