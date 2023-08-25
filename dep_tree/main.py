@@ -25,6 +25,7 @@ ARCH_OS_2_URL = {
     },
     'Windows': {
         'x86_64': f"https://github.com/gabotechs/dep-tree/releases/download/v{__version__}/dep-tree_{__version__}_windows_amd64.tar.gz",
+        'AMD64': f"https://github.com/gabotechs/dep-tree/releases/download/v{__version__}/dep-tree_{__version__}_darwin_amd64.tar.gz",
         'arm64': f"https://github.com/gabotechs/dep-tree/releases/download/v{__version__}/dep-tree_{__version__}_windows_arm64.tar.gz",
         'aarch64': f"https://github.com/gabotechs/dep-tree/releases/download/v{__version__}/dep-tree_{__version__}_windows_arm64.tar.gz",
     },
