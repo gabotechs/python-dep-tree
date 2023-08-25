@@ -25,3 +25,41 @@ jobs:
           poetry build
           pip3 install $(ls dist/*.whl)
           dep-tree -h
+
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0' # https://github.com/actions/checkout/issues/217
+
+      - run: pipx install poetry
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: poetry
+      - name: Release
+        run: |
+          VERSION="$(cat pyproject.toml | grep version | awk '{print $3}' | jq -r)"
+          gh release create "v$VERSION"
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - run: poetry build
+      - run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs:
+      - publish
+    steps:
+      - run: |
+          VERSION="$(cat pyproject.toml | grep version | awk '{print $3}' | jq -r)"
+          git tag "v$VERSION"
+          git push --tags
+          gh release create "v$VERSION"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
