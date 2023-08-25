@@ -31,6 +31,14 @@ def url(arch, system):
     return f"https://github.com/gabotechs/dep-tree/releases/download/v{__version__}/dep-tree_{__version__}_{system}_{arch}.tar.gz"
 
 
+def find_executable(files):
+    for file in files:
+        if file == 'dep-tree' or file == 'dep-tree.exe':
+            return file
+    print('Could not find executable file in uncompressed folder')
+    exit(1)
+
+
 def main():
     arch = platform.machine()
     system = platform.system()
@@ -50,7 +58,10 @@ def main():
         urllib.request.urlretrieve(url(ARCH_MAP[arch], OS_MAP[system]), BIN_TAR)
         file = tarfile.open(BIN_TAR)
         file.extractall(BIN_EXTRACTED)
-        shutil.move(path.join(BIN_EXTRACTED, 'dep-tree'), BIN)
+        shutil.move(
+            path.join(BIN_EXTRACTED, find_executable(os.listdir(BIN_EXTRACTED))),
+            BIN
+        )
         shutil.rmtree(BIN_EXTRACTED)
         file.close()
         os.remove(BIN_TAR)
