@@ -12,7 +12,6 @@ BIN_TAR = BIN+'.tar.gz'
 BIN_EXTRACTED = BIN+'-extracted'
 __version__ = '0.13.4'
 
-# https://github.com/gabotechs/dep-tree/releases/download/v0.13.4/dep-tree_0.13.4_darwin_arm64.tar.gz
 ARCH_OS_2_URL = {
     'Darwin': {
         'x86_64': f"https://github.com/gabotechs/dep-tree/releases/download/v{__version__}/dep-tree_{__version__}_darwin_amd64.tar.gz",
