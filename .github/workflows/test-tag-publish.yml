@@ -20,7 +20,8 @@ jobs:
         with:
           python-version: '3.11'
           cache: poetry
-      - run: |
+      - name: Test
+        run: |
           poetry build
           pip3 install $(ls dist/*.whl)
           dep-tree -h
