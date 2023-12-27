@@ -7,7 +7,7 @@ import os.path as path
 import tarfile
 import shutil
 
-__version__ = '0.16.3'
+__version__ = '0.16.4'
 
 BIN = path.join(path.dirname(__file__), 'dep-tree')
 BIN_TAR = BIN + '.tar.gz'
