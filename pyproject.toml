@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-dep-tree"
-version = "0.22.0"
+version = "0.22.1"
 description = "Python wrapper for Dep Tree https://github.com/gabotechs/dep-tree"
 authors = ["gabotechs <gb.mt.me@gmail.com>"]
 readme = "README.md"
